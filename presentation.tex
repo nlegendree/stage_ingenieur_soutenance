@@ -1,0 +1,69 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+\documentclass[aspectratio=169,xcolor=dvipsnames]{beamer}
+
+\makeatletter
+\def\input@path{{packages/}}
+\makeatother
+
+\usetheme{Simple}
+
+\usepackage{hyperref}
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+% The title
+\title[short title]{Titre à remplacer}
+\subtitle{Sous-titre à remplacer}
+
+\author[Nathan Legendre] {Nathan Legendre}
+\institute[INSA Rouen] % Your institution may be shorthand to save space
+{
+    % Your institution for the title page
+    Informatique et Technologies de l'Information \\
+    INSA Rouen Normandie 
+    \vskip 3pt
+}
+\date{\today} % Date, can be changed to a custom date
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\begin{frame}
+    % Print the title page as the first slide
+    \titlepage
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	GLOSSARY
+%----------------------------------------------------------------------------------------
+
+\begin{frame}{Sommaire}
+    % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+    \tableofcontents
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	CONTENT PAGES
+%----------------------------------------------------------------------------------------
+
+\include{presentation/sections/section_sample}
+\include{presentation/sections/sources}
+
+%----------------------------------------------------------------------------------------
+%	END PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{frame}
+    \Huge{\centerline{Merci pour votre attention !}}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
