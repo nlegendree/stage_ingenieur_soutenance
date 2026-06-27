@@ -1,7 +1,8 @@
 %========================================================================
-%  SOUTENANCE DE STAGE --- Nathan Legendre --- INSA Rouen Normandie
-%  Ecocea La Fabrique --- Squelette Beamer (theme Simple)
+%  SOUTENANCE DE STAGE - Nathan Legendre - INSA Rouen Normandie
+%  Ecocea La Fabrique - Plan 5 parties + slides de partie - theme Simple
 %  >>> COMPILER DEPUIS CE DOSSIER (presentation/) : latexmk -pdf presentation.tex
+%  >>> CONTRAINTE : aucun tiret long
 %========================================================================
 
 \documentclass[aspectratio=169,xcolor=dvipsnames]{beamer}
@@ -13,29 +14,48 @@
 \usetheme{Simple}
 
 \usepackage[T1]{fontenc}
-% Typo française : ton install (rapport) a déjà le paquet. Décommente la ligne suivante :
+% Typo francaise : decommente si besoin (ton install l'a)
 % \usepackage[french]{babel}
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{booktabs}
 
-% --- Placeholder visuel : a remplacer par tes captures / figures du rapport ---
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+% Palette du schéma — remplace par les \definecolor exacts de ton rapport pour les mêmes teintes
+\definecolor{ClaudeOrange}{HTML}{D97757}  % terracotta signature
+\definecolor{ClaudeCream}{HTML}{F0EEE6}   % fond crème clair
+\definecolor{ClaudeDark}{HTML}{8B4A37}    % terracotta foncé (texte/bordure)
+\definecolor{GRIS}{cmyk}{0.7,0.6,0.5,0.3}
+
+% Placeholder visuel : a remplacer par tes captures / figures du rapport
 \newcommand{\placeholder}[2]{%
   \begin{center}\setlength{\fboxsep}{0pt}%
   \colorbox{InvisibleBlue}{\framebox[0.82\linewidth]{\rule{0pt}{#1}%
   \textcolor{gray}{\footnotesize [#2]}}}\end{center}}
 
-%------------------------------------------------------------------------
-\title[Démarche QA/IA --- Polène]{Industrialiser la QA d'un e-commerce multi-pays}
-\subtitle{Une démarche ingénieur appuyée sur l'IA générative --- Stage chez Ecocea La Fabrique}
+% Slide intermediaire "titre de partie en gros" (auto, avant chaque section)
+\AtBeginSection[]{%
+  \begin{frame}[plain]
+    \centering
+    \vfill
+    {\usebeamercolor[fg]{structure}\large Partie \insertsectionnumber}\\[10pt]
+    {\Huge\bfseries\insertsection}
+    \vfill
+  \end{frame}}
+
+%========================================================================
+% SLIDE DE TITRE : laissee telle que tu l'as reglee (titre / sous-titre / dept ISIA)
+\title[Qualité, produit, discovery]{Qualité, produit, discovery : une démarche améliorée par l'IA}
+\subtitle{Stage Ingénieur chez Ecocea La Fabrique}
 \author[Nathan Legendre]{Nathan Legendre}
 \institute[INSA Rouen]{%
-  Département Informatique \\
+  Département ISIA \\
   INSA Rouen Normandie
   \vskip 3pt}
 \date{\today}
 
-%------------------------------------------------------------------------
+%========================================================================
 \begin{document}
 
 \begin{frame}
@@ -46,15 +66,11 @@
   \tableofcontents
 \end{frame}
 
-% ===== CONTENU =====
 \include{sections/01_contexte}
-\include{sections/02_probleme}
-\include{sections/03_documentation}
-\include{sections/04_pipeline}
-\include{sections/05_execution}
-\include{sections/06_recul}
-\include{sections/07_transposabilite}
-\include{sections/08_conclusion}
+\include{sections/02_poc_qa}
+\include{sections/03_produit}
+\include{sections/04_gtt}
+\include{sections/05_conclusion}
 \include{sections/sources}
 
 \begin{frame}

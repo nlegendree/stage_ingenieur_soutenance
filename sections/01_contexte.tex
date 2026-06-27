@@ -1,46 +1,53 @@
 %========================================================================
-\section{Contexte \& fil rouge}
-% ⏱ ~4 min  |  Objectif : poser le décor, montrer l'étendue du rôle, ENTONNOIR vers la question phare
+\section{Contexte}
+% TIMING ~4-5 min  |  Cadre du stage, les deux mondes, mon point de depart (executant QA), la these.
 %========================================================================
 
-\begin{frame}{Ecocea La Fabrique \& le projet Polène}
-  % 🎤 ~1 min. Qui est l'agence, sur quoi j'étais. Rester factuel et rapide.
+\begin{frame}{Ecocea La Fabrique}
   \begin{columns}[T]
-    \column{.55\textwidth}
+    \column{.58\textwidth}
     \begin{itemize}
-      \item Intégrateur e-commerce ($\sim$60 ingénieurs), écosystème \alert{Shopify} \& SFCC
-      \item Comptes retail haut de gamme : Polène, Céline, Jacquemus
-      \item Mon terrain : \alert{Polène} --- déployé dans $>$20 pays, livré en continu
+      \item Membre du groupe Codyssée, organisée en pôles : Shopify, Salesforce, .NET
+      \item Intégrateur e-commerce ($\sim$60 collaborateurs), également présent dans l'industrie lourde, notamment via l'entreprise GTT
+      \item Mon tuteur : \alert{Alexandre Séjourné}, directeur projet du Pôle Shopify
     \end{itemize}
-    \column{.45\textwidth}
-    \placeholder{3.2cm}{logo Polène / capture polene-paris.com}
+    \vskip 4pt
+    \begin{exampleblock}{Pôle Shopify}
+      \centering\footnotesize Polène \quad\textbullet\quad Demellier \quad\textbullet\quad \textit{Satisfy}
+    \end{exampleblock}
+    \column{.42\textwidth}
+    \centering
+    \includegraphics[width=.85\linewidth]{images/ecocea_logo}\\[12pt]
+    \includegraphics[width=.70\linewidth]{images/polene_logo}\hfill
+    \includegraphics[width=.60\linewidth]{images/gtt_logo}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Un rôle qui s'est élargi en 3 temps}
-  % 🎤 ~1 min 30. C'est LA slide qui annonce la largeur. Montrer la timeline, dire que je vais ZOOMER sur le 1er bloc.
-  % 👉 A remplacer par une frise visuelle (TikZ ou image). Stub ci-dessous.
-  \placeholder{3.4cm}{frise : Delivery QA  $\to$  Product / PO  $\to$  Discovery GTT (LNG)}
-  \vskip 4pt
-  \footnotesize
-  \begin{columns}[T]
-    \column{.33\textwidth}\textbf{Jan–Mar --- QA / Delivery}\\ Homologation, TNR, MEP multi-pays
-    \column{.33\textwidth}\textbf{Avr–Mai --- Product}\\ Rédaction de tickets, audits UX/UI, appels d'offres
-    \column{.33\textwidth}\textbf{Mai–Juin --- GTT / LNG}\\ Benchmark, discovery, ateliers
+\begin{frame}{Un sujet de stage qui s'est élargi en trois temps}
+  \footnotesize Recruté comme Chef de projet/QA (prédominance QA), mon périmètre s'est élargi vers des missions Produit Delivery mais aussi Discovery.
+  \vskip 10pt
+  \begin{columns}[c]
+    \column{.30\textwidth}
+      \begin{exampleblock}{1. QA Delivery}
+        \footnotesize \textit{Polène} \\[3pt]
+        Homologation, TNR, Documentation
+      \end{exampleblock}
+    \column{.03\textwidth}\centering $\to$
+    \column{.30\textwidth}
+      \begin{exampleblock}{2. Product Delivery}
+        \footnotesize \textit{Polène} \\[3pt]
+        Rédaction de tickets, cérémonies scrum
+      \end{exampleblock}
+    \column{.03\textwidth}\centering $\to$
+    \column{.30\textwidth}
+      \begin{block}{3. Product Discovery}
+        \footnotesize \textit{GTT} \\[3pt]
+        Benchmark concurrentiel, ateliers, audits
+      \end{block}
   \end{columns}
-  \vskip 4pt
-  % 🎤 « Je vais zoomer sur le premier bloc --- le projet le plus structurant --- puis montrer que la démarche se rejoue ailleurs. »
+  \vskip 12pt
+  \begin{alertblock}{Environnements variés}
+        \footnotesize D'un site \alert{e-commerce haut de gamme} (Polène) à \alert{l'industrie lourde GNL} (GTT).
+      \end{alertblock}
 \end{frame}
 
-\begin{frame}{Le fil rouge de cette soutenance}
-  % 🎤 ~1 min 30. Poser le fil rouge transverse PUIS la problématique précise du projet phare.
-  \begin{block}{Un même geste d'ingénieur, répété sur 3 missions}
-    Transformer une réalité \alert{non structurée, non documentée, mouvante} en un livrable
-    \alert{reproductible et transmissible} --- l'IA comme levier, mon jugement comme garde-fou.
-  \end{block}
-  \vskip 6pt
-  \begin{alertblock}{Problématique du projet phare (QA)}
-    Comment garantir la qualité du Delivery d'un site e-commerce multi-pays en exploitation,
-    avec un dispositif opérationnel restreint et des cadences soutenues ?
-  \end{alertblock}
-\end{frame}
