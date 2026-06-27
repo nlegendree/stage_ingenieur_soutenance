@@ -1,0 +1,35 @@
+%========================================================================
+\section{Décision 1 --- Documenter au bon niveau}
+% ⏱ ~4 min  |  LE verrou méthodo. C'est ta meilleure réponse au « qu'avez-vous apporté ? »
+%========================================================================
+
+\begin{frame}{Quel niveau d'abstraction documenter ?}
+  % 🎤 ~2 min. Le dilemme : trop fin = incassable à chaque MEP ; trop vague = inutile comme référence de test.
+  \begin{columns}[T]
+    \column{.5\textwidth}
+    \textbf{L'expérience de la Home}
+    \begin{itemize}\footnotesize
+      \item Seule page pré-documentée : \alert{28 éléments} unitaires
+      \item Chaque changement éditorial cassait des éléments
+      \item Tout vérifier au moment d'une MEP : impossible dans le temps imparti
+    \end{itemize}
+    \column{.5\textwidth}
+    \begin{block}{Deux extrêmes à éviter}
+      \footnotesize
+      Trop \alert{détaillé} (Cahier de recette) $\to$ non maintenable.\\[4pt]
+      Trop \alert{vague} (scénarios courts) $\to$ pas une référence de test.
+    \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Le choix : documenter des blocs cohérents}
+  % 🎤 ~2 min. Exemple Product Card. Et le couple « avant/après » de la Home comme ETALON de calibrage.
+  \begin{itemize}
+    \item Documenter \alert{composants \& fonctionnalités} comme des blocs (apparence, comportements, interactions)
+    \item Ex. la \textbf{Product Card} = un bloc unique, et non 3 items séparés (add-to-cart, hover, variantes)
+    \item Lisible, \alert{résistant aux changements éditoriaux}, suffisant comme référence TNR
+  \end{itemize}
+  \vskip 6pt
+  \placeholder{2.6cm}{figure 4.2/4.4 du rapport : couple « avant (exhaustif) / après (bloc) »}
+  % 🎤 « Ce couple avant/après est devenu mon étalon : il matérialise le niveau visé, et sert de référence à l'automatisation. »
+\end{frame}

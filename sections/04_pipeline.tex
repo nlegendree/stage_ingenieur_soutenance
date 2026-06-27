@@ -1,0 +1,39 @@
+%========================================================================
+\section{Construction --- Un pipeline de Skills}
+% ⏱ ~4 min  |  Le « ce que j'ai construit ». Montrer l'ARCHITECTURE, pas le code.
+%========================================================================
+
+\begin{frame}{Automatiser la production de la documentation}
+  % 🎤 ~2 min. Documenter 6 pages à la main = plusieurs semaines + incohérences.
+  % Solution : une chaîne de 4 Skills Claude, calibrée sur l'étalon avant/après.
+  \placeholder{3.0cm}{figure 2.1 du rapport : pipeline site-mapper $\to$ to-tnr $\to$ to-confluence / to-prompt}
+  \vskip 4pt
+  \footnotesize
+  \begin{itemize}
+    \item \texttt{site-mapper} --- cartographie exhaustive d'une page (via Playwright)
+    \item \texttt{site-mapper-to-tnr} --- rationalise en fonctionnalités TNR au bon niveau
+    \item \texttt{tnr-to-confluence} --- export Confluence (DOCX + CSV d'index)
+    \item \texttt{tnr-to-prompt} --- transforme la doc en prompt exécutable par un agent
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Deux partis pris d'ingénieur}
+  % 🎤 ~2 min. Ce sont MES décisions d'architecture (pas l'IA). Bien les assumer.
+  \begin{columns}[T]
+    \column{.5\textwidth}
+    \begin{block}{Séparation en 4 Skills}
+      \footnotesize
+      Responsabilité unique par étape $\Rightarrow$ on \alert{relance l'une sans les autres}.
+      Générique : réapplicable à d'autres sites Shopify/SFCC en n'adaptant que l'entrée.
+    \end{block}
+    \column{.5\textwidth}
+    \begin{alertblock}{Rétro-spec assumée}
+      \footnotesize
+      Faute de spec, on reconstruit depuis la prod.
+      Limite connue : un bug en prod peut devenir une norme.
+      Conséquence : tout écart pré-prod / prod sur un élément non modifié = bug.
+    \end{alertblock}
+  \end{columns}
+  \vskip 6pt
+  % 🎤 Maintenance : matrice par page dans Confluence, statut « Impacté MEP » avant chaque livraison.
+\end{frame}

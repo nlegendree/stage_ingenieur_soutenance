@@ -1,6 +1,9 @@
-%----------------------------------------------------------------------------------------
-%	PACKAGES AND THEMES
-%----------------------------------------------------------------------------------------
+%========================================================================
+%  SOUTENANCE DE STAGE --- Nathan Legendre --- INSA Rouen Normandie
+%  Ecocea La Fabrique --- Squelette Beamer (theme Simple)
+%  >>> COMPILER DEPUIS CE DOSSIER (presentation/) : latexmk -pdf presentation.tex
+%========================================================================
+
 \documentclass[aspectratio=169,xcolor=dvipsnames]{beamer}
 
 \makeatletter
@@ -9,61 +12,55 @@
 
 \usetheme{Simple}
 
+\usepackage[T1]{fontenc}
+% Typo française : ton install (rapport) a déjà le paquet. Décommente la ligne suivante :
+% \usepackage[french]{babel}
 \usepackage{hyperref}
-\usepackage{graphicx} % Allows including images
-\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{graphicx}
+\usepackage{booktabs}
 
-%----------------------------------------------------------------------------------------
-%	TITLE PAGE
-%----------------------------------------------------------------------------------------
+% --- Placeholder visuel : a remplacer par tes captures / figures du rapport ---
+\newcommand{\placeholder}[2]{%
+  \begin{center}\setlength{\fboxsep}{0pt}%
+  \colorbox{InvisibleBlue}{\framebox[0.82\linewidth]{\rule{0pt}{#1}%
+  \textcolor{gray}{\footnotesize [#2]}}}\end{center}}
 
-% The title
-\title[short title]{Titre à remplacer}
-\subtitle{Sous-titre à remplacer}
+%------------------------------------------------------------------------
+\title[Démarche QA/IA --- Polène]{Industrialiser la QA d'un e-commerce multi-pays}
+\subtitle{Une démarche ingénieur appuyée sur l'IA générative --- Stage chez Ecocea La Fabrique}
+\author[Nathan Legendre]{Nathan Legendre}
+\institute[INSA Rouen]{%
+  Département Informatique \\
+  INSA Rouen Normandie
+  \vskip 3pt}
+\date{\today}
 
-\author[Nathan Legendre] {Nathan Legendre}
-\institute[INSA Rouen] % Your institution may be shorthand to save space
-{
-    % Your institution for the title page
-    Informatique et Technologies de l'Information \\
-    INSA Rouen Normandie 
-    \vskip 3pt
-}
-\date{\today} % Date, can be changed to a custom date
-
-%----------------------------------------------------------------------------------------
-
+%------------------------------------------------------------------------
 \begin{document}
 
 \begin{frame}
-    % Print the title page as the first slide
-    \titlepage
+  \titlepage
 \end{frame}
 
-%----------------------------------------------------------------------------------------
-%	GLOSSARY
-%----------------------------------------------------------------------------------------
-
-\begin{frame}{Sommaire}
-    % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-    \tableofcontents
+\begin{frame}{Plan}
+  \tableofcontents
 \end{frame}
 
-%----------------------------------------------------------------------------------------
-%	CONTENT PAGES
-%----------------------------------------------------------------------------------------
-
-\include{presentation/sections/section_sample}
-\include{presentation/sections/sources}
-
-%----------------------------------------------------------------------------------------
-%	END PAGE
-%----------------------------------------------------------------------------------------
+% ===== CONTENU =====
+\include{sections/01_contexte}
+\include{sections/02_probleme}
+\include{sections/03_documentation}
+\include{sections/04_pipeline}
+\include{sections/05_execution}
+\include{sections/06_recul}
+\include{sections/07_transposabilite}
+\include{sections/08_conclusion}
+\include{sections/sources}
 
 \begin{frame}
-    \Huge{\centerline{Merci pour votre attention !}}
+  \Huge{\centerline{Merci de votre attention}}
+  \vskip 12pt
+  \normalsize{\centerline{\textcolor{gray}{Des questions ?}}}
 \end{frame}
-
-%----------------------------------------------------------------------------------------
 
 \end{document}
