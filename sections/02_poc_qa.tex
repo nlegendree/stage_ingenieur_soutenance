@@ -4,7 +4,7 @@
 %========================================================================
 
 \begin{frame}{Constat de la QA pour Polène}
-  \footnotesize Contexte : Polène possède un site e-commerce déployé dans plus de 20 pays. En réalité, il y a 10 sites différents qui doivent être mis en production régulièrement.
+  \footnotesize Contexte : Polène possède un site e-commerce déployé dans plus de 20 pays. En réalité, il y a \textbf{10 sites différents} qui doivent être mis en production régulièrement.
   \vskip 8pt
   \begin{columns}[T]
     \column{.49\textwidth}
@@ -21,7 +21,7 @@
       \footnotesize
       \begin{itemize}
         \item Tickets \textbf{sous-spécifiés} : critères d'acceptance flous
-        \item \textbf{Aucune spécification} fiable : seuls les TNR de la page d'accueil
+        \item \textbf{Aucune spécification} fiable : compliqué d'avoir des points de repères pour les tests
         \item \textbf{Pas d'environnement de test} : pré-prod partagée, Golden Data manquante
       \end{itemize}
     \end{alertblock}
@@ -34,17 +34,17 @@
   \only<1>{%
       \begin{columns}[c]
       \column{.47\textwidth}\centering
-        \includegraphics[width=\linewidth,height=5cm,keepaspectratio]{images/ticket}\\[2pt]
-        \footnotesize Ticket initial (PO)
+        \includegraphics[width=\linewidth,height=6cm,keepaspectratio]{images/ticket}\\[2pt]
+        \footnotesize Ticket initial (rédigé par la PO)
       \column{.06\textwidth}\centering $\to$
       \column{.47\textwidth}\centering
-        \includegraphics[width=\linewidth,height=5cm,keepaspectratio]{images/ticket_qa_checks}\\[2pt]
-        \footnotesize \alert{+ section QA Checks}
+        \includegraphics[width=\linewidth,height=6cm,keepaspectratio]{images/ticket_qa_checks}\\[2pt]
+        \footnotesize + section "QA Checks"
     \end{columns}}
   \only<2>{%
     \begin{columns}[T]
       \column{.5\textwidth}
-      \textbf{Les « QA Checks »}
+      \textbf{Les "QA Checks"}
       \begin{itemize}\footnotesize
         \item Section ajoutée au ticket avant le lancement des développements
         \item Palliatif aux critères d'acceptance restreints
@@ -62,8 +62,8 @@
     \vskip 28pt
     \begin{alertblock}{Des pistes pour poursuivre le travail d'amélioration de la QA...}
       \begin{enumerate}
-        \item Quelle \alert{stratégie de documentation} des TNR adopter ?
-        \item Comment exécuter des tests de manière \alert{systématique} et \alert{automatique} ?
+        \item Quelle \textbf{stratégie de documentation} des TNR adopter ?
+        \item Comment exécuter des tests de manière \textbf{systématique} et \textbf{automatique} ?
       \end{enumerate}
     \end{alertblock}}
 \end{frame}
@@ -74,23 +74,34 @@
   \begin{alertblock}{Le vrai enjeu : à quel niveau de détail documenter ?}
     \footnotesize
     \begin{itemize}
-      \item \textbf{Trop fin} (élément par élément) : la seule page documentée, la Home, l'était ainsi (\alert{28 éléments unitaires}) $\to$ pour un seul QA sur Polène c'est trop compliqué à maintenir
-      \item \textbf{Trop vague} : ne sert plus de référence de test fiable
+      \item \textbf{Trop fin} : la page d'accueil documentait 28 éléments différents \\$\to$ pour un seul QA sur Polène c'est trop compliqué à maintenir
+      \item \textbf{Trop vague} : des éléments vont être oubliés lors des tests
     \end{itemize}
   \end{alertblock}
   \vskip 2pt
   \begin{exampleblock}{Mon choix : documenter par blocs cohérents}
-    \footnotesize Chaque composant Shopify = un bloc, niveau calibré par expérimentation sur la Home. Résiste aux changements éditoriaux, reste exploitable.
+    \begin{itemize}
+      \item Chaque \textbf{composant Shopify} = un élément à documenter
+      \item Niveau trouvé par expérimentation sur la page d'accueil
+      \item Ce niveau reste maintenable pour un dispositif comme Polène
+    \end{itemize}
   \end{exampleblock}
+\end{frame}
+
+\begin{frame}[plain]
+  % VOIX ~30 s. Illustration concrete des 3 niveaux de granularite sur la PLP Cyme.
+  \centering
+  \includegraphics[height=0.9\paperheight,width=\paperwidth,keepaspectratio]{images/granularite_tnr}\\[3pt]
+  {\scriptsize Trois niveaux d'abstraction pour la documentation sur la PLP}
 \end{frame}
 
 \begin{frame}{Documenter par blocs : avant / après}
   \only<1>{
     \centering \includegraphics[width=\linewidth,height=6cm,keepaspectratio]{images/old_page_confluence}\\[4pt]
-    \centering \textbf{Avant} : grand tableau avec très peu de détails}
+    \centering \textbf{Avant} : tableau non trié avec des informations inexploitables}
   \only<2>{
     \centering \includegraphics[width=\linewidth,height=6cm,keepaspectratio]{images/new_doc_confluence}\\[4pt]
-    \centering \textbf{Après} : matrice TNR par blocs cohérents (robuste)}
+    \centering \textbf{Après} : tableau trié avec des informations utilisables}
 \end{frame}
 
 \begin{frame}{Construction de la documentation}
@@ -127,7 +138,9 @@
     \draw[arr] (conf) -- (confdoc);
     \draw[arr] (prompt) -- (rapport);
     \node[below=0.15cm of mapper, text=ClaudeDark, font=\scriptsize\bfseries] {Production de la documentation};
-    \node[below=0.15cm of prompt, text=ClaudeDark, font=\scriptsize\bfseries] {Exploitation};
+    \node[below=0.15cm of tnr, text=ClaudeDark, font=\scriptsize\bfseries] {Réduction en composants};
+    \node[below=0.15cm of conf, text=ClaudeDark, font=\scriptsize\bfseries] {Exploitation documentation};
+    \node[below=0.15cm of prompt, text=ClaudeDark, font=\scriptsize\bfseries] {Exploitation outil QA};
   \end{tikzpicture}%
   }
   \centering Pipeline de skills Claude
@@ -135,37 +148,14 @@
   \begin{block}{Fonctionnement du pipeline}
     \footnotesize
     \begin{itemize}
-      \item \textbf{Quatre skills séparées} : responsabilité unique, on relance une étape sans les autres ; générique, réapplicable à d'autres sites en n'adaptant que l'entrée.
-      \item \textbf{Rétro-spec} : faute de spécification, on reconstruit depuis la production (limite connue : un bug en prod peut devenir une norme).
+      \item \textbf{Quatre skills séparées} : générique et réapplicable à d'autres sites en adaptant l'entrée
+      \item \textbf{Rétro-spec} : faute de spécification, on reconstruit depuis la production \\$\to$ limite connue : un bug en production peut devenir une norme
     \end{itemize}
   \end{block}
 \end{frame}
 
 \begin{frame}{Comment exécuter les tests documentés ?}
-  % VOIX ~2 min. Tableau VALIDE dans le rapport, ne pas retoucher le fond.
-  \scriptsize
-  \begin{table}
-    \begin{tabular}{lll}
-      \toprule
-      \textbf{Critère} & \textbf{Outil dédié} & \textbf{Exploration IA} \\
-      \midrule
-      Mise en place   & Élevé (1 j/scénario)     & Modéré (1 prompt) \\
-      Maintenance     & Élevée (casse souvent)   & Faible (doc générée) \\
-      Réutilisabilité & Limitée                  & Élevée \\
-      Déterminisme    & Élevé                    & Modéré (variation liées LLM) \\
-      Vérifiabilité   & Directe (assertions)     & Indirecte (rapport) \\
-      \bottomrule
-    \end{tabular}
-  \end{table}
-  \vskip 4pt
-  \begin{block}{Choix : Exploration IA via Antigravity}
-    \footnotesize Critère décisif : le \alert{coût de maintenance}. Aucune auto-réparation ne compense
-    un référentiel éditorial mouvant ; le pipeline régénère la doc à la source.
-  \end{block}
-\end{frame}
-
-\begin{frame}{Comment exécuter les tests documentés ?}
-  \footnotesize Deux familles : des \textbf{outils dédiés} (BrowserStack, Mr Suricate\dots) où l'on code des scénarios, ou l'\textbf{exploration autonome par IA} où un agent les déduit de la doc.
+  \footnotesize Deux familles : des \textbf{outils dédiés} (BrowserStack, Mr Suricate, \dots) où l'on code des scénarios, ou l'\textbf{exploration autonome par IA} (Claude + Chrome, Antigravity, \dots) où un agent les déduit de la documentation.
   \vskip 4pt
   \scriptsize
   \begin{center}
@@ -183,88 +173,99 @@
   \end{center}
   \vskip 2pt
   \begin{block}{Choix : Exploration IA via Antigravity}
-    \footnotesize Critère décisif : le \alert{coût de maintenance}. Les outils dédiés (Mr Suricate, BrowserStack) réparent un \alert{sélecteur HTML} cassé, mais pas un \alert{changement de contenu} (produit retiré, bannière remplacée), ce qui bouge le plus sur Polène.
+    \footnotesize Critère décisif : le \textbf{coût de maintenance}. \\Les outils dédiés à la QA ont du mal à réparer les scénarios de tests en cas de changement de contenu (produit retiré, bannière remplacée), ce qui bouge le plus sur Polène.
   \end{block}
 \end{frame}
 
 \begin{frame}{Antigravity : explorer le site comme un "humain"}
-  \footnotesize \textbf{Google Antigravity} : un IDE natif IA doté d'un \alert{sous-agent navigateur} piloté par le modèle de vision \alert{Gemini 3 Pro}.
+  \footnotesize \textbf{Google Antigravity} : un IDE natif IA doté d'un sous-agent navigateur piloté par le modèle de vision Gemini 3 Pro.
   \vskip 6pt
   \begin{columns}[T]
     \column{.5\textwidth}
     \begin{block}{Comment ça marche ?}
       \footnotesize
       \begin{enumerate}
-        \item Un \textbf{prompt} dérivé de la documentation TNR décrit les éléments à vérifier
+        \item Un \textbf{prompt} dérivé de la documentation TNR décrit les éléments à vérifier (tnr-to-prompt)
         \item Le sous-agent \textbf{explore} le site et capture le rendu
         \item Il produit un \textbf{rapport vérifiable} (captures + vidéos)
       \end{enumerate}
-      Aucun scénario codé : l'agent les déduit.
+      Aucun scénario codé : l'agent les déduit du prompt
     \end{block}
     \column{.46\textwidth}
     \begin{exampleblock}{Pourquoi Gemini pour la vision ?}
-      \footnotesize Meilleur modèle de vision en mars (\textit{classement LMArena}). \\
-      Il analyse le rendu visuel, pas seulement le DOM.
+      \begin{itemize}
+        \item \textbf{Meilleur modèle} de vision en mars \textit{(classement LMArena)} \\$\to$ Analyse le rendu visuel du site, pas seulement le DOM
+      \end{itemize}
     \end{exampleblock}
   \end{columns}
-  \vskip 16pt
-  {\footnotesize $\Rightarrow$~Le coût humain passe de l'écriture de scénarios de tests à la lecture de rapports.}
 \end{frame}
 
-\begin{frame}{Antigravity en action : exploration puis Playwright}
-  \only<1>{
-    \centering \includegraphics[width=\linewidth,height=7cm,keepaspectratio]{images/antigravity_execution_1}\\[4pt]
-    \centering \textbf{Phase 1} : le sous-agent explore le rendu \alert{une seule fois}}
-  \only<2>{
-    \centering \includegraphics[width=\linewidth,height=7cm,keepaspectratio]{images/antigravity_execution_2}\\[4pt]
-    \centering \textbf{Phase 2} : \alert{Playwright} industrialise les captures (rapide, déterministe)}
+\begin{frame}{Antigravity : la phase d'exploration}
+  \centering
+  \includegraphics[width=\linewidth,height=6.7cm,keepaspectratio]{images/antigravity_execution_1}\\[4pt]
+  \textbf{Phase 1} : le sous-agent explore le rendu des composants
+\end{frame}
+
+\begin{frame}{L'obstacle du coût d'exécution}
+  \begin{alertblock}{Le problème}
+    \begin{itemize}
+      \item L'agent natif d'Antigravity réalisait \textbf{l'exploration visuelle} et \textbf{les captures d'écran}
+      \item Les premiers tests ont montré \textbf{$\sim$1h} pour la page d'accueil (9 fonctionnalités à tester)
+    \end{itemize}
+  \end{alertblock}
+  \vskip 8pt
+  \begin{exampleblock}{La ré-architecture du prompt}
+    \footnotesize Séparer les rôles :
+    \begin{itemize}
+      \item Le sous-agent explore une fois le site (vérification du rendu visuel, comportement des composants) et repère les balises HTML des composants \textbf{(Phase 1)}
+      \item Puis délègue les captures d'écrans à Playwright avec les balises déjà identifiées \textbf{(Phase 2)} \\Résultat : $\sim$20 min par page
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Playwright fait les captures}
+  \centering
+  \includegraphics[width=\linewidth,height=6cm,keepaspectratio]{images/antigravity_execution_2}\\[4pt]
+  \textbf{Phase 2} : Playwright réalise les captures à partir des balises identifiées
 \end{frame}
 
 \begin{frame}{Un rapport vérifiable}
   \only<1>{
     \centering \includegraphics[width=\linewidth,height=6.7cm,keepaspectratio]{images/rapport_qa_1}\\[2pt]
-    {\scriptsize \alert{NO-CONTRIBUTION} = aucun contenu contribué : comportement normal, pas un échec.}}
+    \centering \textbf{Phase 3} : Génération du rapport}
   \only<2>{
     \centering \includegraphics[width=\linewidth,height=7cm,keepaspectratio]{images/rapport_qa_2}\\[4pt]
-    \centering \textbf{Détail} : rendu desktop / mobile + vérifications par section}
+    \centering \textbf{Pour chaque composant} : rendu desktop / mobile + vérifications}
 \end{frame}
 
-\begin{frame}{Obstacle clé : un coût d'exécution intenable TO REWORK}
-  % VOIX ~2 min. ETOILE. Ta contribution la + nette : c'est TOI, pas l'IA.
+\begin{frame}{Résultats et limites}
+  \begin{exampleblock}{Ce qui a été construit}
+    \begin{itemize}
+      \item Une chaîne de documentation et d'exécution de tests reproductible sur d'autres sites e-commerce similaires
+      \item Les \textbf{6 pages principales} du site sont documentées et exécutables avec Antigravity (Accueil, PLP, PDP, Compte client, Panier, Checkout)
+    \end{itemize}
+  \end{exampleblock}
+  \vskip 1pt
   \begin{columns}[T]
-    \column{.5\textwidth}
-    \begin{alertblock}{Obstacle}
-      \footnotesize Première mesure : $\sim$\alert{1 h} par passe (Home, 9 fonctionnalités).
-      Non tenable à l'échelle. Cause : l'agent capturait lui-même en continu.
+    \column{.45\textwidth}
+    \begin{alertblock}{Limites assumées}
+      \footnotesize
+      \begin{itemize}
+        \item Environnement pré-prod non maîtrisé
+        \item Variations liées aux LLM
+        \item Chrome desktop/mobile
+      \end{itemize}
     \end{alertblock}
     \column{.5\textwidth}
-    \begin{examples}
-      \footnotesize \textbf{Ré-architecture} : le sous-agent explore \alert{une fois},
-      puis \alert{Playwright} pilote les captures. Résultat : $\sim$\alert{20 min} par page.
-    \end{examples}
+    \begin{block}{Pour aller plus loin}
+      \footnotesize
+      \begin{itemize}
+        \item Environnement de test dédié (Golden Data)
+        \item Couverture Safari/mobile
+        \item Intégrer en CI/CD
+      \end{itemize}
+    \end{block}
   \end{columns}
-  \vskip 6pt
-  \begin{block}{Le message à retenir}
-    \footnotesize Le difficile n'était pas d'« utiliser l'IA » mais de l'\alert{orchestrer} :
-    niveau d'abstraction, architecture du pipeline, coût d'exécution maîtrisé.
-  \end{block}
-\end{frame}
-
-\begin{frame}{Résultats et limites assumées TO REWORK}
-  % VOIX ~1 min 30. Gain brut dur a quantifier : assume, bascule sur le prouvable. Dire les limites avant le jury.
-  \begin{columns}[T]
-    \column{.5\textwidth}
-    \textbf{Résultats}
-    \begin{itemize}\footnotesize
-      \item \alert{6 pages} documentées (Home, PLP, PDP, panier, checkout, compte)
-      \item Apport clé : \alert{transfert de maîtrise} (le savoir ne vit plus dans quelques têtes)
-    \end{itemize}
-    \column{.5\textwidth}
-    \textbf{Limites}
-    \begin{itemize}\footnotesize
-      \item Environnement non maîtrisé (pas de Golden Data)
-      \item Déterminisme : variabilité LLM
-      \item Couverture : Chrome seul (clients sur Safari mobile)
-    \end{itemize}
-  \end{columns}
+  \vskip 16pt
+  {\footnotesize $\Rightarrow$~À retenir : démarche dans l'utilisation de l'IA (niveau d'abstraction, architecture, coût allégé de 1h à 20min)}
 \end{frame}

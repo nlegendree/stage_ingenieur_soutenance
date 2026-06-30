@@ -34,6 +34,13 @@
   \colorbox{InvisibleBlue}{\framebox[0.82\linewidth]{\rule{0pt}{#1}%
   \textcolor{gray}{\footnotesize [#2]}}}\end{center}}
 
+  \addtobeamertemplate{footline}{}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=south west, xshift=6pt, yshift=3pt]
+      at (current page.south west){\includegraphics[height=0.5cm]{images/INSALogo}};
+  \end{tikzpicture}%
+}
+
 % Slide intermediaire "titre de partie en gros" (auto, avant chaque section)
 \AtBeginSection[]{%
   \begin{frame}[plain]
@@ -46,7 +53,7 @@
 
 %========================================================================
 % SLIDE DE TITRE : laissee telle que tu l'as reglee (titre / sous-titre / dept ISIA)
-\title[Qualité, produit, discovery]{Qualité, produit, discovery : une démarche améliorée par l'IA}
+\title[Qualité, produit, discovery]{Qualité, product, discovery : une démarche améliorée par l'IA}
 \subtitle{Stage Ingénieur chez Ecocea La Fabrique}
 \author[Nathan Legendre]{Nathan Legendre}
 \institute[INSA Rouen]{%
@@ -76,7 +83,7 @@
 \begin{frame}
   \Huge{\centerline{Merci de votre attention}}
   \vskip 12pt
-  \normalsize{\centerline{\textcolor{gray}{Des questions ?}}}
+  \normalsize{\centerline{\textcolor{gray}{Questions ?}}}
 \end{frame}
 
 \end{document}
